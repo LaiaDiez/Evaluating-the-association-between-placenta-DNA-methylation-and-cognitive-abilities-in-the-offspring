@@ -1,6 +1,5 @@
 ### Manhattan plots ###
 
-# Es fan amb totes les dades de totes les CpGs després de les exclusions i cpg's anotades ("n" de cpgs una mica més reduida que la inicial al fer l'anàlisi)
 
 setwd("/home/isglobal.lan/ldiez/data/WS_INMA/Methylation_INMA/PACE/Pla_IQ_LD/results/INMA_202200601_Output/")
 
@@ -8,7 +7,6 @@ setwd("/home/isglobal.lan/ldiez/data/WS_INMA/Methylation_INMA/PACE/Pla_IQ_LD/res
 
 general<-read.table("/home/isglobal.lan/ldiez/data/WS_INMA/Methylation_INMA/PACE/Pla_IQ_LD/results/INMA_202200601_Output/NOUsignificativeresultsMAIN/QC_MAIN_NOU/general/general_QCData.txt", header=TRUE)
 
-## primer passar a numeric la columna on indica el cromosoma "chr" 
 general$chr2<-gsub("[a-zA-Z ]", "", general$CpG_chrm)
 general$chr<-as.numeric(general$chr2)
 

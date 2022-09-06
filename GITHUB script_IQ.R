@@ -199,9 +199,6 @@ save(phenodataframe,file="phenofinal_IQ.Rdata")
 
 #Select relevant variables *NoTE: verbal, ppIQ and general scores must be the last columns
 
-
-
-##### he posat les que estan en tots els models: 
 relevant_variables <- c("edadm","estudios3c","Smoke",
                         "edMcCarthy", "parity2c", "sges", "cohort", "pdp_perm_m100sd15", "pdp_verm_m100sd15", "pdp_genm_m100sd15", "maternal_IQ", "PregnancyComplications", "preterm", "cesarean", "labor_iniciation", "sga") 
 
@@ -272,24 +269,15 @@ write.csv(sig_table, file=paste0(cohort,"_IQ_correlations_ci_",
 
 
 ####################################################
-####################################################
 ### DATA ANALISYS
+####################################################
 
 ##Site-Specific Data Analysis
 
-#This stage of the analysis is specific to the chosen exposure/outcome and the 
-#specified adjustment variables. Below is the code for all of the analyses to 
-#run for the mental health project. Please be sure to update the cohort and date 
-#information in the below code for your analysis, as well as the destination path.
-#Finally, be sure to update the column names of the exposure/outcome(s) of interest, 
-#the adjustment variables, and the table 1 variables. These should correspond to 
-#column names in the dataframe specified in the phenofinal argument of the dataAnalysis function.
+#This stage of the analysis is specific to the chosen exposure/outcome and the specified adjustment variables. Below is the code for all of the analyses to run for the mental health project. Please be sure to update the cohort and date information in the below code for your analysis, as well as the destination path.
+#Finally, be sure to update the column names of the exposure/outcome(s) of interest, the adjustment variables, and the table 1 variables. These should correspond to column names in the dataframe specified in the phenofinal argument of the dataAnalysis function.
 #Quick check to make sure the function runs in your cohort
-
-#Given the modeling approaches used, the dataAnalysis function requires a good deal 
-#of time to run. We recommend first checking whether the function runs on a relatively 
-#small subset of sites (i.e. 100 CpG loci). If you encounter any issues, please let us know. If not, proceed to the next step.
-
+#Given the modeling approaches used, the dataAnalysis function requires a good deal of time to run. We recommend first checking whether the function runs on a relatively small subset of sites (i.e. 100 CpG loci). If you encounter any issues, please let us know. If not, proceed to the next step.
 
 #if needed reload Preprocessed data of step 1 and the final phenodataframe from step 2
 library(PACEanalysis)

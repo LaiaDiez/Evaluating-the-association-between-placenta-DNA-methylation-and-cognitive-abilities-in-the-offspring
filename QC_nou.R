@@ -1,9 +1,5 @@
-
-
-###################################################
 ###################################################
 ################## MAIN      ######################
-###################################################
 ###################################################
 
 
@@ -184,7 +180,7 @@ colname_NforProbe <- 'N_for_probe'
 pcMissingSamples <- 0.9
 
 
-########## ----------  END VARIABLES DEFINED BY USER  ----------  ########## a partir d'aquí ja no s'ha de canviar res
+########## ----------  END VARIABLES DEFINED BY USER  ----------  ########## 
 
 
 
@@ -300,13 +296,9 @@ for ( i in 1:length(files) )
 
 
 
-
-#########################################################
 #########################################################
 ######################MATERNAL IQ #######################
 #########################################################
-#########################################################
-
 
 setwd("/home/isglobal.lan/ldiez/data/WS_INMA/Methylation_INMA/PACE/Pla_IQ_LD/results/INMA_20220601NOUIQ_Output/Resultats_matIQ/")
 
@@ -439,7 +431,7 @@ colname_NforProbe <- 'N_for_probe'
 pcMissingSamples <- 0.9
 
 
-########## ----------  END VARIABLES DEFINED BY USER  ----------  ########## a partir d'aquí ja no s'ha de canviar res
+########## ----------  END VARIABLES DEFINED BY USER  ----------  ##########
 
 
 
@@ -554,14 +546,9 @@ for ( i in 1:length(files) )
 }
 
 
-
-
-#########################################################
 #########################################################
 ######################SENSITIVITY #######################
 #########################################################
-#########################################################
-
 
 setwd("/home/isglobal.lan/ldiez/data/WS_INMA/Methylation_INMA/PACE/Pla_IQ_LD/results/INMA_20220707_Output/SENSITIVITY_NOU/")
 
@@ -721,7 +708,7 @@ colname_NforProbe <- 'N_for_probe'
 pcMissingSamples <- 0.9
 
 
-########## ----------  END VARIABLES DEFINED BY USER  ----------  ########## a partir d'aquí ja no s'ha de canviar res
+########## ----------  END VARIABLES DEFINED BY USER  ----------  ##########
 
 
 
@@ -837,9 +824,7 @@ for ( i in 1:length(files) )
 
 
 #########################################################
-#########################################################
 ####################### SGES ############################
-#########################################################
 #########################################################
 
 
@@ -1009,7 +994,7 @@ colname_NforProbe <- 'N_for_probe'
 pcMissingSamples <- 0.9
 
 
-########## ----------  END VARIABLES DEFINED BY USER  ----------  ########## a partir d'aquí ja no s'ha de canviar res
+########## ----------  END VARIABLES DEFINED BY USER  ----------  ##########
 
 
 
@@ -1125,13 +1110,8 @@ for ( i in 1:length(files) )
 
 
 
-
-
-
-#########################################################
 #########################################################
 ####################### CELLTYPES########################
-#########################################################
 #########################################################
 
 #######GENERAL
@@ -1332,10 +1312,6 @@ head(verbalendothelial1)
 #6 cg12045430 255  0.003809615 0.003693448  1.0314521 0.303402924
 
 write.table(verbalendothelial1, "verbalendothelial1.txt", col.names=TRUE)
-
-
-
-
 
 
 library(EASIER)
@@ -1601,10 +1577,6 @@ head(verbalsyncytiotrophoblast1)
 write.table(verbalsyncytiotrophoblast1, "verbalsyncytiotrophoblast1.txt", col.names=TRUE)
 
 
-
-
-
-
 library(EASIER)
 
 
@@ -1838,8 +1810,6 @@ head(nonverbalnRBC1)
 #6 cg12045430 255 -0.009169007 0.01215187 -0.7545350 0.45129327
 
 
-
-
 write.table(nonverbalnRBC1, "nonverbalnRBC1.txt", col.names=TRUE)
 
 
@@ -1871,10 +1841,6 @@ head(verbalnRBC1)
 
 
 write.table(verbalnRBC1, "verbalnRBC1.txt", col.names=TRUE)
-
-
-
-
 
 
 library(EASIER)
@@ -2080,8 +2046,6 @@ head(generalhofbauer1)
 #6 cg12045430 255 -0.0039976786 0.00709962 -0.56308344 0.57392184
 
 
-
-
 write.table(generalhofbauer1, "generalhofbauer1.txt", col.names=TRUE)
 
 ###################non verbal
@@ -2141,13 +2105,7 @@ head(verbalhofbauer1)
 #5 cg14008030 255  0.011653346 0.014806036  0.7870673 0.43204578
 #6 cg12045430 255 -0.006001018 0.007089739 -0.8464370 0.39818125
 
-
-
 write.table(verbalhofbauer1, "verbalhofbauer1.txt", col.names=TRUE)
-
-
-
-
 
 
 library(EASIER)
@@ -2190,7 +2148,6 @@ exclude <- c( 'control_probes',
               'Unrel_450_EPIC_blood')
 
 
-
 N <- c(255, 255, 255)
 n <- c(NA, NA, NA)
 
@@ -2209,7 +2166,6 @@ pcMissingSamples <- 0.9
 
 
 ########## ----------  END VARIABLES DEFINED BY USER  ----------  ##########
-
 
 
 ## ###################### ##
@@ -2323,8 +2279,6 @@ for ( i in 1:length(files) )
 }
 
 
-
-
 ###################################
 ##### trophoblast
 ###################################
@@ -2415,14 +2369,7 @@ head(verbaltrophoblast1)
 #5 cg14008030 255 -0.003457358 0.004637188 -0.7455721 0.45668066
 #6 cg12045430 255 -0.002866823 0.002220476 -1.2910845 0.19795934
 
-
-
-
 write.table(verbaltrophoblast1, "verbaltrophoblast1.txt", col.names=TRUE)
-
-
-
-
 
 
 library(EASIER)

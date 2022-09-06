@@ -33,15 +33,15 @@ require(EASIER)
 ########## ----------  VARIABLES DEFINED BY USER  ----------  ##########
 
 # Set working directory to enrichment folder
-setwd("/home/isglobal.lan/mcosin/data/WS_INMA/Methylation_INMA/PACE/Pla_IQ_LD/results/INMA_202200601_Output/NOUsignificativeresultsMAIN/")
+setwd("/home/isglobal.lan/ldiez/data/WS_INMA/Methylation_INMA/PACE/Pla_IQ_LD/results/INMA_202200601_Output/NOUsignificativeresultsMAIN/")
 
 # Files with CpG data to enrich may be a CpGs list 
-FilesToEnrich <- c("/home/isglobal.lan/mcosin/data/WS_INMA/Methylation_INMA/PACE/Pla_IQ_LD/results/INMA_202200601_Output/NOUsignificativeresultsMAIN/general_for_enrich.txt") ## mira't aquest arxiu i veus com està formatejat per a que el pugui llegir easier i adaptes els teus
+FilesToEnrich <- c("/home/isglobal.lan/ldiez/data/WS_INMA/Methylation_INMA/PACE/Pla_IQ_LD/results/INMA_202200601_Output/NOUsignificativeresultsMAIN/general_for_enrich.txt")
 
 # Values for adjustment
-BN <-  FALSE    # Use Bonferroni ?
+BN <-  FALSE    # Use Bonferroni
 FDR <- NA     # significance level for adjustment, if NA FDR is not used
-pvalue <- NA # significance level for p-value, if NA p-value is not used # com hem filtrat abans i l'arxiu ja conté només 10^-4 no cal dir´li aquí quin p-value és
+pvalue <- NA # significance level for p-value, if NA p-value is not used
 
 
 # Array type, used : EPIC or 450K
