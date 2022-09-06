@@ -184,7 +184,7 @@ dim(generalqcfdr)
 generalqcBonf<-generalqc[generalqc$padj.bonf=="yes",]
 dim(generalqcBonf)
 # 0 9
-# tenim significatives per bonferroni i fdr però per tenir més cpg's per "treballar" agafem pval menys restrictiu i guardem taula. 
+# tenim significatives per bonferroni i fdr perÃ² per tenir mÃ©s cpg's per "treballar" agafem pval menys restrictiu i guardem taula. 
 generalqcsig5<-generalqc[generalqc$P_VAL<0.00001,]
 dim(generalqcsig5)
 # 15  9
