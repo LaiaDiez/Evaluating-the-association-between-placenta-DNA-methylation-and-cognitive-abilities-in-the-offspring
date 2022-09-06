@@ -174,7 +174,7 @@ n <- c(NA, NA, NA)
 #           to be defined if you want to filter CpGs with low representation.
 #         If defined value in colname_NforProbe not exists, no filter will be applied
 #  - pcMissingSamples :
-#        Máximum percent of missing samples allowed,
+#        MÃ¡ximum percent of missing samples allowed,
 
 colname_NforProbe <- 'N_for_probe'
 pcMissingSamples <- 0.9
@@ -425,7 +425,7 @@ n <- c(NA, NA, NA)
 #           to be defined if you want to filter CpGs with low representation.
 #         If defined value in colname_NforProbe not exists, no filter will be applied
 #  - pcMissingSamples :
-#        Máximum percent of missing samples allowed,
+#        MÃ¡ximum percent of missing samples allowed,
 
 colname_NforProbe <- 'N_for_probe'
 pcMissingSamples <- 0.9
@@ -702,7 +702,7 @@ n <- c(NA, NA, NA)
 #           to be defined if you want to filter CpGs with low representation.
 #         If defined value in colname_NforProbe not exists, no filter will be applied
 #  - pcMissingSamples :
-#        Máximum percent of missing samples allowed,
+#        MÃ¡ximum percent of missing samples allowed,
 
 colname_NforProbe <- 'N_for_probe'
 pcMissingSamples <- 0.9
@@ -988,7 +988,7 @@ n <- c(NA, NA, NA)
 #           to be defined if you want to filter CpGs with low representation.
 #         If defined value in colname_NforProbe not exists, no filter will be applied
 #  - pcMissingSamples :
-#        Máximum percent of missing samples allowed,
+#        MÃ¡ximum percent of missing samples allowed,
 
 colname_NforProbe <- 'N_for_probe'
 pcMissingSamples <- 0.9
@@ -1366,7 +1366,7 @@ n <- c(NA, NA, NA)
 #           to be defined if you want to filter CpGs with low representation.
 #         If defined value in colname_NforProbe not exists, no filter will be applied
 #  - pcMissingSamples :
-#        Máximum percent of missing samples allowed,
+#        MÃ¡ximum percent of missing samples allowed,
 
 colname_NforProbe <- 'N_for_probe'
 pcMissingSamples <- 0.9
@@ -1629,7 +1629,7 @@ n <- c(NA, NA, NA)
 #           to be defined if you want to filter CpGs with low representation.
 #         If defined value in colname_NforProbe not exists, no filter will be applied
 #  - pcMissingSamples :
-#        Máximum percent of missing samples allowed,
+#        MÃ¡ximum percent of missing samples allowed,
 
 colname_NforProbe <- 'N_for_probe'
 pcMissingSamples <- 0.9
@@ -1895,7 +1895,7 @@ n <- c(NA, NA, NA)
 #           to be defined if you want to filter CpGs with low representation.
 #         If defined value in colname_NforProbe not exists, no filter will be applied
 #  - pcMissingSamples :
-#        Máximum percent of missing samples allowed,
+#        MÃ¡ximum percent of missing samples allowed,
 
 colname_NforProbe <- 'N_for_probe'
 pcMissingSamples <- 0.9
@@ -2159,7 +2159,7 @@ n <- c(NA, NA, NA)
 #           to be defined if you want to filter CpGs with low representation.
 #         If defined value in colname_NforProbe not exists, no filter will be applied
 #  - pcMissingSamples :
-#        Máximum percent of missing samples allowed,
+#        MÃ¡ximum percent of missing samples allowed,
 
 colname_NforProbe <- 'N_for_probe'
 pcMissingSamples <- 0.9
@@ -2424,7 +2424,7 @@ n <- c(NA, NA, NA)
 #           to be defined if you want to filter CpGs with low representation.
 #         If defined value in colname_NforProbe not exists, no filter will be applied
 #  - pcMissingSamples :
-#        Máximum percent of missing samples allowed,
+#        MÃ¡ximum percent of missing samples allowed,
 
 colname_NforProbe <- 'N_for_probe'
 pcMissingSamples <- 0.9
