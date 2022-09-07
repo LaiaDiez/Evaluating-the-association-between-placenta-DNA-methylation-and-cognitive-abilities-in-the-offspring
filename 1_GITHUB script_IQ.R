@@ -1,3 +1,6 @@
+##  * This code is not its own but it is an adaptation to be able to obtain the desired results for this work *
+
+
 #########################################################################################
 # The following R code will allow you to complete all the EWAS requested in the PACE IQ and placenta DNA methylation analysis plan.
 # The code also produces files summarising the variables included in the EWAS.
