@@ -184,7 +184,6 @@ dim(generalqcfdr)
 generalqcBonf<-generalqc[generalqc$padj.bonf=="yes",]
 dim(generalqcBonf)
 # 0 9
-# tenim significatives per bonferroni i fdr però per tenir més cpg's per "treballar" agafem pval menys restrictiu i guardem taula. 
 generalqcsig5<-generalqc[generalqc$P_VAL<0.00001,]
 dim(generalqcsig5)
 # 15  9
@@ -239,6 +238,352 @@ dim(generalqcsig4) #91  9
 generalqcsig4ann<-merge(generalqcsig4, annotation.table2, by.x="probeID", by.y="row.names")
 dim(generalqcsig4ann)#91 21
 write.table(generalqcsig4ann, "general_sig_4ann.txt", col.names=TRUE)
+
+##########################
+#### SEX       ###########
+##########################
+
+setwd("/home/isglobal.lan/ldiez/data/WS_INMA/Methylation_INMA/PACE/Pla_IQ_LD/results/INMA_20220607_Output/RESULTATSSIG/")
+
+##################################GENERAL######################
+
+# VERBAL
+
+verbalqc<-read.table("/home/isglobal.lan/ldiez/data/WS_INMA/Methylation_INMA/PACE/Pla_IQ_LD/results/INMA_20220607_Output/RESULTATSSIG/QC_ResultsGENERAL/verbal/verbal_QCData.txt", header=TRUE)
+dim(verbalqc)
+#[1] 708105      9     
+
+verbalqcBonf<-verbalqc[verbalqc$padj.bonf=="yes",]
+dim(verbalqcBonf)
+# 0
+
+verbalqcfdr<-verbalqc[verbalqc$padj.fdr<0.05,]
+dim(verbalqcfdr)
+# 0
+
+
+verbalqcsig5<-verbalqc[verbalqc$P_VAL<0.00001,] #  (p_val 10^-5)
+dim(verbalqcsig5)
+#  29  9
+verbalqcsig4<-verbalqc[verbalqc$P_VAL<0.0001,] #  (p_val 10^-5)
+dim(verbalqcsig4)
+# [1] 172   9
+
+
+write.table(verbalqcsig5, "verbal_sig_5SEX.txt", col.names=TRUE)
+write.table(verbalqcsig4, "verbal_sig_4SEX.txt", col.names=TRUE)
+
+# NON-VERBAL
+
+nonverbalqc<-read.table("/home/isglobal.lan/ldiez/data/WS_INMA/Methylation_INMA/PACE/Pla_IQ_LD/results/INMA_20220607_Output/RESULTATSSIG/QC_ResultsGENERAL/nonverbal/nonverbal_QCData.txt", header=TRUE)
+nonverbalqcfdr<-nonverbalqc[nonverbalqc$padj.fdr<0.05,]
+dim(nonverbalqcfdr)
+#0 9
+nonverbalqcBonf<-nonverbalqc[nonverbalqc$padj.bonf=="yes",]
+dim(nonverbalqcBonf)
+# 0 9
+
+nonverbalqcsig5<-nonverbalqc[nonverbalqc$P_VAL<0.00001,]
+dim(nonverbalqcsig5)
+# 17  9
+nonverbalqcsig4<-nonverbalqc[nonverbalqc$P_VAL<0.0001,]
+dim(nonverbalqcsig4)
+# 112   9
+
+write.table(nonverbalqcsig5, "nonverbal_sig_5SEX.txt", col.names=TRUE)
+write.table(nonverbalqcsig4, "nonverbal_sig_4SEX.txt", col.names=TRUE)
+
+# GENERAL
+
+
+generalqc<-read.table("/home/isglobal.lan/ldiez/data/WS_INMA/Methylation_INMA/PACE/Pla_IQ_LD/results/INMA_20220607_Output/RESULTATSSIG/QC_ResultsGENERAL/general/general_QCData.txt", header=TRUE)
+generalqcfdr<-generalqc[generalqc$padj.fdr<0.05,]
+dim(generalqcfdr)
+# 4 9
+generalqcBonf<-generalqc[generalqc$padj.bonf=="yes",]
+dim(generalqcBonf)
+# 1 9
+generalqcsig5<-generalqc[generalqc$P_VAL<0.00001,]
+dim(generalqcsig5)
+# 16  9
+generalqcsig4<-generalqc[generalqc$P_VAL<0.0001,]
+dim(generalqcsig4)
+#103  9
+
+write.table(generalqcsig5, "general_sig_5SEX.txt", col.names=TRUE)
+write.table(generalqcsig4, "general_sig_4SEX.txt", col.names=TRUE)
+
+
+###############################
+### Add ANNOTATION          ###
+###############################
+
+# Install package for annotation
+
+#if (!require("BiocManager", quietly = TRUE))
+#install.packages("BiocManager")
+
+#BiocManager::install("IlluminaHumanMethylationEPICanno.ilm10b4.hg19")
+
+library(IlluminaHumanMethylationEPICanno.ilm10b4.hg19)
+
+library(minfi)
+
+data(IlluminaHumanMethylationEPICanno.ilm10b4.hg19)
+
+annotation.table = getAnnotation(IlluminaHumanMethylationEPICanno.ilm10b4.hg19)
+
+annotation.table2<-annotation.table[,c(1, 2, 3, 12, 13, 14, 15, 18, 19, 22, 23, 24)]
+
+# VERBAL
+
+verbalqcsig4<-verbalqc[verbalqc$P_VAL<0.0001,]
+dim(verbalqcsig4) #164   9 if you don't have this file loaded from before, then reload it with read.table, etc...)
+verbalqcsig4ann<-merge(verbalqcsig4, annotation.table2, by.x="probeID", by.y="row.names")
+dim(verbalqcsig4ann) #164  21
+write.table(verbalqcsig4ann, "verbal_sig_4annSEX.txt", col.names=TRUE) # save annotated dataframe
+
+# NONVERBAL
+nonverbalqcsig4<-nonverbalqc[nonverbalqc$P_VAL<0.0001,]
+dim(nonverbalqcsig4) 
+nonverbalqcsig4ann<-merge(nonverbalqcsig4, annotation.table2, by.x="probeID", by.y="row.names")
+dim(nonverbalqcsig4ann)
+write.table(nonverbalqcsig4ann, "nonverbal_sig_4annSEX.txt", col.names=TRUE)
+
+# GENERAL
+
+generalqcsig4<-generalqc[generalqc$P_VAL<0.0001,]
+dim(generalqcsig4) #91  9
+generalqcsig4ann<-merge(generalqcsig4, annotation.table2, by.x="probeID", by.y="row.names")
+dim(generalqcsig4ann)#91 21
+write.table(generalqcsig4ann, "general_sig_4annSEX.txt", col.names=TRUE)
+
+################################## FEMALES ######################
+
+# VERBAL
+
+verbalqc<-read.table("/home/isglobal.lan/ldiez/data/WS_INMA/Methylation_INMA/PACE/Pla_IQ_LD/results/INMA_20220607_Output/RESULTATSSIG/QC_ResultsSEX_F/verbal/verbal_QCData.txt", header=TRUE)
+dim(verbalqc)
+#[1] 708105      9     
+
+verbalqcBonf<-verbalqc[verbalqc$padj.bonf=="yes",]
+dim(verbalqcBonf)
+# 7
+
+verbalqcfdr<-verbalqc[verbalqc$padj.fdr<0.05,]
+dim(verbalqcfdr)
+# 366
+
+
+verbalqcsig5<-verbalqc[verbalqc$P_VAL<0.00001,] #  (p_val 10^-5)
+dim(verbalqcsig5)
+#  195  9
+verbalqcsig4<-verbalqc[verbalqc$P_VAL<0.0001,] #  (p_val 10^-5)
+dim(verbalqcsig4)
+# [1] 879   9
+
+
+write.table(verbalqcsig5, "verbal_sig_5SEXFEM.txt", col.names=TRUE)
+write.table(verbalqcsig4, "verbal_sig_4SEXFEM.txt", col.names=TRUE)
+
+# NON-VERBAL
+
+nonverbalqc<-read.table("/home/isglobal.lan/ldiez/data/WS_INMA/Methylation_INMA/PACE/Pla_IQ_LD/results/INMA_20220607_Output/RESULTATSSIG/QC_ResultsSEX_F/nonverbal/nonverbal_QCData.txt", header=TRUE)
+nonverbalqcfdr<-nonverbalqc[nonverbalqc$padj.fdr<0.05,]
+dim(nonverbalqcfdr)
+#21 9
+nonverbalqcBonf<-nonverbalqc[nonverbalqc$padj.bonf=="yes",]
+dim(nonverbalqcBonf)
+# 2 9
+
+nonverbalqcsig5<-nonverbalqc[nonverbalqc$P_VAL<0.00001,]
+dim(nonverbalqcsig5)
+# 63  9
+nonverbalqcsig4<-nonverbalqc[nonverbalqc$P_VAL<0.0001,]
+dim(nonverbalqcsig4)
+# 348   9
+
+write.table(nonverbalqcsig5, "nonverbal_sig_5FEM.txt", col.names=TRUE)
+write.table(nonverbalqcsig4, "nonverbal_sig_4FEM.txt", col.names=TRUE)
+
+# GENERAL
+
+
+generalqc<-read.table("/home/isglobal.lan/ldiez/data/WS_INMA/Methylation_INMA/PACE/Pla_IQ_LD/results/INMA_20220607_Output/RESULTATSSIG/QC_ResultsSEX_F/general/general_QCData.txt", header=TRUE)
+generalqcfdr<-generalqc[generalqc$padj.fdr<0.05,]
+dim(generalqcfdr)
+# 49 9
+generalqcBonf<-generalqc[generalqc$padj.bonf=="yes",]
+dim(generalqcBonf)
+# 4 9
+generalqcsig5<-generalqc[generalqc$P_VAL<0.00001,]
+dim(generalqcsig5)
+# 103  9
+generalqcsig4<-generalqc[generalqc$P_VAL<0.0001,]
+dim(generalqcsig4)
+#529  9
+
+write.table(generalqcsig5, "general_sig_5FEM.txt", col.names=TRUE)
+write.table(generalqcsig4, "general_sig_4FEM.txt", col.names=TRUE)
+
+
+###############################
+### Add ANNOTATION          ###
+###############################
+
+# Install package for annotation
+
+#if (!require("BiocManager", quietly = TRUE))
+#install.packages("BiocManager")
+
+#BiocManager::install("IlluminaHumanMethylationEPICanno.ilm10b4.hg19")
+
+library(IlluminaHumanMethylationEPICanno.ilm10b4.hg19)
+
+library(minfi)
+
+data(IlluminaHumanMethylationEPICanno.ilm10b4.hg19)
+
+annotation.table = getAnnotation(IlluminaHumanMethylationEPICanno.ilm10b4.hg19)
+
+annotation.table2<-annotation.table[,c(1, 2, 3, 12, 13, 14, 15, 18, 19, 22, 23, 24)]
+
+# VERBAL
+
+verbalqcsig4<-verbalqc[verbalqc$P_VAL<0.0001,]
+dim(verbalqcsig4) 
+verbalqcsig4ann<-merge(verbalqcsig4, annotation.table2, by.x="probeID", by.y="row.names")
+dim(verbalqcsig4ann) 
+write.table(verbalqcsig4ann, "verbal_sig_4annFEM.txt", col.names=TRUE) # save annotated dataframe
+
+# NONVERBAL
+nonverbalqcsig4<-nonverbalqc[nonverbalqc$P_VAL<0.0001,]
+dim(nonverbalqcsig4) #105   9
+nonverbalqcsig4ann<-merge(nonverbalqcsig4, annotation.table2, by.x="probeID", by.y="row.names")
+dim(nonverbalqcsig4ann)#105  21
+write.table(nonverbalqcsig4ann, "nonverbal_sig_4annFEM.txt", col.names=TRUE)
+
+# GENERAL
+
+generalqcsig4<-generalqc[generalqc$P_VAL<0.0001,]
+dim(generalqcsig4) #91  9
+generalqcsig4ann<-merge(generalqcsig4, annotation.table2, by.x="probeID", by.y="row.names")
+dim(generalqcsig4ann)#91 21
+write.table(generalqcsig4ann, "general_sig_4annFEM.txt", col.names=TRUE)
+
+################################## MALE ######################
+
+# VERBAL
+
+verbalqc<-read.table("/home/isglobal.lan/ldiez/data/WS_INMA/Methylation_INMA/PACE/Pla_IQ_LD/results/INMA_20220607_Output/RESULTATSSIG/QC_ResultsSEX_M/verbal/verbal_QCData.txt", header=TRUE)
+dim(verbalqc)
+#[1] 708105      9     
+
+verbalqcBonf<-verbalqc[verbalqc$padj.bonf=="yes",]
+dim(verbalqcBonf)
+# 8
+
+verbalqcfdr<-verbalqc[verbalqc$padj.fdr<0.05,]
+dim(verbalqcfdr)
+# 47
+
+
+verbalqcsig5<-verbalqc[verbalqc$P_VAL<0.00001,] #  (p_val 10^-5)
+dim(verbalqcsig5)
+#  90  9
+verbalqcsig4<-verbalqc[verbalqc$P_VAL<0.0001,] #  (p_val 10^-5)
+dim(verbalqcsig4)
+# [1] 390   9
+
+
+write.table(verbalqcsig5, "verbal_sig_5Male.txt", col.names=TRUE)
+write.table(verbalqcsig4, "verbal_sig_4Male.txt", col.names=TRUE)
+
+# NON-VERBAL
+
+nonverbalqc<-read.table("/home/isglobal.lan/ldiez/data/WS_INMA/Methylation_INMA/PACE/Pla_IQ_LD/results/INMA_20220607_Output/RESULTATSSIG/QC_ResultsSEX_M/nonverbal/nonverbal_QCData.txt", header=TRUE)
+nonverbalqcfdr<-nonverbalqc[nonverbalqc$padj.fdr<0.05,]
+dim(nonverbalqcfdr)
+#54 9
+nonverbalqcBonf<-nonverbalqc[nonverbalqc$padj.bonf=="yes",]
+dim(nonverbalqcBonf)
+# 4 9
+
+nonverbalqcsig5<-nonverbalqc[nonverbalqc$P_VAL<0.00001,]
+dim(nonverbalqcsig5)
+# 84  9
+nonverbalqcsig4<-nonverbalqc[nonverbalqc$P_VAL<0.0001,]
+dim(nonverbalqcsig4)
+# 380   9
+
+write.table(nonverbalqcsig5, "nonverbal_sig_5Male.txt", col.names=TRUE)
+write.table(nonverbalqcsig4, "nonverbal_sig_4Male.txt", col.names=TRUE)
+
+# GENERAL
+
+
+generalqc<-read.table("/home/isglobal.lan/ldiez/data/WS_INMA/Methylation_INMA/PACE/Pla_IQ_LD/results/INMA_20220607_Output/RESULTATSSIG/QC_ResultsSEX_M/general/general_QCData.txt", header=TRUE)
+generalqcfdr<-generalqc[generalqc$padj.fdr<0.05,]
+dim(generalqcfdr)
+# 51 9
+generalqcBonf<-generalqc[generalqc$padj.bonf=="yes",]
+dim(generalqcBonf)
+# 6 9
+generalqcsig5<-generalqc[generalqc$P_VAL<0.00001,]
+dim(generalqcsig5)
+# 83  9
+generalqcsig4<-generalqc[generalqc$P_VAL<0.0001,]
+dim(generalqcsig4)
+#357  9
+
+write.table(generalqcsig5, "general_sig_5Male.txt", col.names=TRUE)
+write.table(generalqcsig4, "general_sig_4Male.txt", col.names=TRUE)
+
+
+###############################
+### Add ANNOTATION          ###
+###############################
+
+# Install package for annotation
+
+#if (!require("BiocManager", quietly = TRUE))
+#install.packages("BiocManager")
+
+#BiocManager::install("IlluminaHumanMethylationEPICanno.ilm10b4.hg19")
+
+library(IlluminaHumanMethylationEPICanno.ilm10b4.hg19)
+
+library(minfi)
+
+data(IlluminaHumanMethylationEPICanno.ilm10b4.hg19)
+
+annotation.table = getAnnotation(IlluminaHumanMethylationEPICanno.ilm10b4.hg19)
+
+annotation.table2<-annotation.table[,c(1, 2, 3, 12, 13, 14, 15, 18, 19, 22, 23, 24)]
+
+# VERBAL
+
+verbalqcsig4<-verbalqc[verbalqc$P_VAL<0.0001,]
+dim(verbalqcsig4) 
+verbalqcsig4ann<-merge(verbalqcsig4, annotation.table2, by.x="probeID", by.y="row.names")
+dim(verbalqcsig4ann) 
+write.table(verbalqcsig4ann, "verbal_sig_4annMale.txt", col.names=TRUE) # save annotated dataframe
+
+# NONVERBAL
+nonverbalqcsig4<-nonverbalqc[nonverbalqc$P_VAL<0.0001,]
+dim(nonverbalqcsig4) 
+nonverbalqcsig4ann<-merge(nonverbalqcsig4, annotation.table2, by.x="probeID", by.y="row.names")
+dim(nonverbalqcsig4ann)
+write.table(nonverbalqcsig4ann, "nonverbal_sig_4annMale.txt", col.names=TRUE)
+
+# GENERAL
+
+generalqcsig4<-generalqc[generalqc$P_VAL<0.0001,]
+dim(generalqcsig4) 
+generalqcsig4ann<-merge(generalqcsig4, annotation.table2, by.x="probeID", by.y="row.names")
+dim(generalqcsig4ann)
+write.table(generalqcsig4ann, "general_sig_4annMale.txt", col.names=TRUE)
+
 
 
 ###############################
@@ -496,7 +841,7 @@ write.table(generalqcsig4ann, "general_sig_4ann.txt", col.names=TRUE)
 
 
 ###########################################
-####CELLTYPES results PACE. and anotation
+####CELLTYPES results PACE and anotation
 ##############################################
 
 # Install package for annotation
