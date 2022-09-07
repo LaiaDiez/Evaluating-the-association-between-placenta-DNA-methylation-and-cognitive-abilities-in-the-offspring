@@ -1363,6 +1363,7 @@ load("/home/isglobal.lan/ldiez/data/WS_INMA/Methylation_INMA/PACE/Pla_IQ_LD/resu
 ls()
 summary(alldataout)
 general<-as.data.frame(alldataout$AdjustedwithCellType)
+colnames(general)<-c("probeID","N", "BETA", "SE", "zval", "P_VAL", "warnings")
 head(general)
 #     probeID   N          BETA           SE       zval       P_VAL warnings
 #1 cg14817997 210  5.430941e-04 2.026557e-04  2.6798854 0.007364738     none
@@ -1371,7 +1372,6 @@ head(general)
 #4 cg13869341 210  2.086720e-05 1.509645e-04  0.1382258 0.890061935     none
 #5 cg14008030 210 -5.488648e-05 1.872499e-04 -0.2931189 0.769431253     none
 #6 cg12045430 210 -2.566694e-05 9.152707e-05 -0.2804300 0.779147587     none
-colnames(general)<-c("probeID","N", "BETA", "SE", "zval", "P_VAL", "warnings")
 write.table(general, "generalsens.txt", col.names=TRUE)
 
 # to get lambdas
