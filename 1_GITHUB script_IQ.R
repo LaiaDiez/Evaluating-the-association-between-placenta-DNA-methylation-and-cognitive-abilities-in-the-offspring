@@ -1,10 +1,3 @@
-##########################################################################################
-#### PACE placenta IQ CODE                                                            ####
-#### Marta Cosin (marta.cosin@isglobal.org)                                           ####
-#### 20220322                                                                         ####
-#### Laia Diez Ahijado                                                                ####
-##########################################################################################
-
 #########################################################################################
 # The following R code will allow you to complete all the EWAS requested in the PACE IQ and placenta DNA methylation analysis plan.
 # The code also produces files summarising the variables included in the EWAS.
@@ -57,7 +50,7 @@ load("/home/isglobal.lan/ldiez/data/WS_INMA/Methylation_INMA/EPIC_placenta/QC_PA
 #First goal in this step is to create a phenodataframe that contains all the necessary variables and only complete cases. You can get the phenodata from the preprocessed data object or load your phenodataframe previously prepared:
 load("/home/isglobal.lan/ldiez/data/WS_INMA/Methylation_INMA/PACE/Pla_IQ_LD/db/phenodataframe07062022.Rdata")
 
-#per comprobar que tot estigui be.mirar que el sex sigui character.
+#to Check:
 str(phenodataframe)
   
 #rownames(phenodataframe)<-as.character(phenodataframe$Basename)
