@@ -42,6 +42,7 @@ load("/home/isglobal.lan/ldiez/data/WS_INMA/Methylation_INMA/PACE/Pla_IQ_LD/resu
 ls()
 summary(alldataout)
 nonverbal<-as.data.frame(alldataout$AdjustedwithCellType)
+colnames(nonverbal)<-c("probeID","N", "BETA", "SE", "zval", "P_VAL", "warnings")
 head(nonverbal)
 #CpG   n          coef           se       zval       pval warnings
 #1 cg14817997 255  3.409748e-04 1.840935e-04  1.8521831 0.06399954     none
@@ -51,7 +52,6 @@ head(nonverbal)
 #5 cg14008030 255 -4.762588e-05 1.947259e-04 -0.2445790 0.80678242     none
 #6 cg12045430 255 -9.340348e-05 8.504743e-05 -1.0982516 0.27209463     none
 
-colnames(nonverbal)<-c("probeID","N", "BETA", "SE", "zval", "P_VAL", "warnings")
 write.table(nonverbal, "nonverbalMAIN.txt", col.names=TRUE)
 
 # to get lambdas
@@ -294,7 +294,731 @@ for ( i in 1:length(files) )
   
 }
 
+###################################################
+################## SEX      ######################
+###################################################
 
+
+setwd("/home/isglobal.lan/ldiez/data/WS_INMA/Methylation_INMA/PACE/Pla_IQ_LD/results/INMA_20220607_Output/RESULTATSSIG/")
+
+
+# VERBAL
+
+load("/home/isglobal.lan/ldiez/data/WS_INMA/Methylation_INMA/PACE/Pla_IQ_LD/results/INMA_20220607_Output/pdp_verm_m100sd15_MAIN_sex/INMA_20220607_pdp_verm_m100sd15_testMAIN_sex_allanalyses.RData")
+ls()
+summary(alldataout)
+verbal<-as.data.frame(alldataout$AdjustedwithCellType)
+colnames(verbal)<-c("probeID","N", "BETA", "SE", "zval", "P_VAL", "warnings")
+head(verbal)
+#probeID   N          BETA           SE       zval       P_VAL warnings
+#1 cg14817997 255  5.523218e-04 1.824671e-04  3.0269668 0.002470211     none
+#2 cg26928153 255  7.465912e-05 1.499919e-04  0.4977545 0.618657084     none
+#4 cg13869341 255 -5.517950e-05 1.335543e-04 -0.4131616 0.679488209     none
+#3 cg16269199 255  5.007095e-05 1.786920e-04  0.2802081 0.779317881     none
+#5 cg14008030 255 -2.558632e-05 1.844984e-04 -0.1386804 0.889702673     none
+#6 cg12045430 255  3.558604e-05 9.504152e-05  0.3744262 0.708087240     none
+
+write.table(verbal, "verbalSEX.txt", col.names=TRUE)
+
+
+verbal<-as.data.frame(alldataout$AdjustedwithCellTypeFemales)
+colnames(verbal)<-c("probeID","N", "BETA", "SE", "zval", "P_VAL", "warnings")
+head(verbal)
+#probeID   N          BETA           SE       zval     P_VAL warnings
+#1 cg14817997 129  5.658629e-04 0.0002985190  1.8955672 0.0580173     none
+#2 cg26928153 129  1.254771e-04 0.0002345247  0.5350273 0.5926310     none
+#3 cg16269199 129 -8.892682e-05 0.0002381662 -0.3733813 0.7088647     none
+#4 cg13869341 129 -2.164914e-04 0.0002139448 -1.0119031 0.3115844     none
+#5 cg14008030 129 -1.569871e-04 0.0002542807 -0.6173772 0.5369860     none
+#6 cg12045430 129  4.560319e-05 0.0001164928  0.3914679 0.6954514     none
+
+write.table(verbal, "verbalSEXFemales.txt", col.names=TRUE)
+
+verbal<-as.data.frame(alldataout$AdjustedwithCellTypeMales)
+colnames(verbal)<-c("probeID","N", "BETA", "SE", "zval", "P_VAL", "warnings")
+head(verbal)
+#probeID   N          BETA           SE        zval      P_VAL warnings
+#1 cg14817997 126  4.815677e-04 0.0002460999  1.95679793 0.05037123     none
+#2 cg26928153 126 -2.328047e-05 0.0002181826 -0.10670178 0.91502557     none
+#3 cg16269199 126  2.213599e-05 0.0002665571  0.08304409 0.93381648     none
+#4 cg13869341 126  8.175831e-06 0.0001829324  0.04469319 0.96435186     none
+#5 cg14008030 126  1.736010e-04 0.0002613522  0.66424158 0.50653570     none
+#6 cg12045430 126 -4.184218e-05 0.0001361781 -0.30726062 0.75864501     none
+
+write.table(verbal, "verbalSEXFemales.txt", col.names=TRUE)
+
+
+# to get lambdas
+
+load("/home/isglobal.lan/ldiez/data/WS_INMA/Methylation_INMA/PACE/Pla_IQ_LD/results/INMA_20220607_Output/pdp_verm_m100sd15_MAIN_sex/INMA_20220607_pdp_verm_m100sd15_testMAIN_sex_lambdas.RData")
+ls()
+#[1] "alldataout" "alllambda"  "verbal"     "verbalsig"
+
+alllambda$Adjusted
+alllambda$AdjustedwithCellType #0.9711832
+alllambda$AdjustedwithCellTypeFemales # 1.324043
+alllambda$AdjustedwithCellTypeMales # 1.053267
+
+
+
+# save or directly write the numbers in an excel file
+
+# NONVERBAL
+
+load("/home/isglobal.lan/ldiez/data/WS_INMA/Methylation_INMA/PACE/Pla_IQ_LD/results/INMA_20220607_Output/pdp_perm_m100sd15_MAIN_sex/INMA_20220607_pdp_perm_m100sd15_testMAIN_sex_allanalyses.RData")
+ls()
+summary(alldataout)
+nonverbal<-as.data.frame(alldataout$AdjustedwithCellType)
+colnames(nonverbal)<-c("probeID","N", "BETA", "SE", "zval", "P_VAL", "warnings")
+head(nonverbal)
+#probeID   N          BETA           SE       zval      P_VAL warnings
+#1 cg14817997 255  3.409748e-04 1.840935e-04  1.8521831 0.06399954     none
+#2 cg26928153 255 -4.277895e-05 1.447365e-04 -0.2955644 0.76756276     none
+#3 cg16269199 255  5.600827e-05 1.883860e-04  0.2973058 0.76623304     none
+#4 cg13869341 255  1.986705e-05 1.496629e-04  0.1327453 0.89439481     none
+#5 cg14008030 255 -4.762588e-05 1.947259e-04 -0.2445790 0.80678242     none
+#6 cg12045430 255 -9.340348e-05 8.504743e-05 -1.0982516 0.27209463     none
+
+write.table(nonverbal, "nonverbalSEX.txt", col.names=TRUE)
+
+nonverbal<-as.data.frame(alldataout$AdjustedwithCellTypeFemales)
+colnames(nonverbal)<-c("probeID","N", "BETA", "SE", "zval", "P_VAL", "warnings")
+head(nonverbal)
+#probeID   N          BETA           SE        zval     P_VAL warnings
+#1 cg14817997 129  4.074155e-04 0.0002485618  1.63909133 0.1011942     none
+#2 cg26928153 129 -4.730006e-05 0.0002068032 -0.22872012 0.8190865     none
+#3 cg16269199 129 -1.949967e-05 0.0002945203 -0.06620825 0.9472120     none
+#4 cg13869341 129 -8.279105e-05 0.0002090945 -0.39595032 0.6921417     none
+#5 cg14008030 129 -1.177788e-05 0.0002935037 -0.04012856 0.9679906     none
+#6 cg12045430 129 -3.744617e-05 0.0001154320 -0.32440023 0.7456350     none
+
+write.table(nonverbal, "nonverbalSEXFemales.txt", col.names=TRUE)
+
+nonverbal<-as.data.frame(alldataout$AdjustedwithCellTypeMales)
+colnames(nonverbal)<-c("probeID","N", "BETA", "SE", "zval", "P_VAL", "warnings")
+head(nonverbal)
+#probeID   N          BETA           SE        zval     P_VAL warnings
+#1 cg14817997 126  4.245266e-04 0.0003383601  1.25465928 0.2096025     none
+#2 cg26928153 126 -2.657383e-05 0.0001884237 -0.14103234 0.8878444     none
+#3 cg16269199 126  3.662256e-05 0.0003219670  0.11374634 0.9094389     none
+#4 cg13869341 126 -9.128550e-06 0.0002828253 -0.03227628 0.9742517     none
+#5 cg14008030 126 -5.978604e-05 0.0003348211 -0.17856111 0.8582823     none
+#6 cg12045430 126 -2.118261e-05 0.0001323192 -0.16008715 0.8728124     none
+write.table(nonverbal, "nonverbalSEXMales.txt", col.names=TRUE)
+
+
+
+# to get lambdas
+
+load("/home/isglobal.lan/ldiez/data/WS_INMA/Methylation_INMA/PACE/Pla_IQ_LD/results/INMA_20220607_Output/pdp_perm_m100sd15_MAIN_sex/INMA_20220607_pdp_perm_m100sd15_testMAIN_sex_lambdas.RData")
+ls()
+#[1] "alldataout" "alllambda"  "verbal"     "verbalsig"
+
+alllambda$Adjusted
+alllambda$AdjustedwithCellType #0.9155405
+alllambda$AdjustedwithCellTypeFemales #1.064859
+alllambda$AdjustedwithCellTypeMales #1.020406
+
+
+# save or directly write the numbers in an excel file
+
+# GENERAL 
+
+load("/home/isglobal.lan/ldiez/data/WS_INMA/Methylation_INMA/PACE/Pla_IQ_LD/results/INMA_20220607_Output/pdp_genm_m100sd15_MAIN_sex/INMA_20220607_pdp_genm_m100sd15_testMAIN_sex_allanalyses.RData")
+ls()
+summary(alldataout)
+general<-as.data.frame(alldataout$AdjustedwithCellType)
+colnames(general)<-c("probeID","N", "BETA", "SE", "zval", "P_VAL", "warnings")
+head(general)
+#probeID   N          BETA           SE       zval      P_VAL warnings
+#1 cg14817997 255  3.409748e-04 1.840935e-04  1.8521831 0.06399954     none
+#2 cg26928153 255 -4.277895e-05 1.447365e-04 -0.2955644 0.76756276     none
+#3 cg16269199 255  5.600827e-05 1.883860e-04  0.2973058 0.76623304     none
+#4 cg13869341 255  1.986705e-05 1.496629e-04  0.1327453 0.89439481     none
+#5 cg14008030 255 -4.762588e-05 1.947259e-04 -0.2445790 0.80678242     none
+#6 cg12045430 255 -9.340348e-05 8.504743e-05 -1.0982516 0.27209463     none
+
+write.table(general, "generalSEX.txt", col.names=TRUE)
+
+general<-as.data.frame(alldataout$AdjustedwithCellTypeFemales)
+colnames(general)<-c("probeID","N", "BETA", "SE", "zval", "P_VAL", "warnings")
+head(general)
+#probeID   N          BETA           SE        zval     P_VAL warnings
+#1 cg14817997 129  4.074155e-04 0.0002485618  1.63909133 0.1011942     none
+#2 cg26928153 129 -4.730006e-05 0.0002068032 -0.22872012 0.8190865     none
+#3 cg16269199 129 -1.949967e-05 0.0002945203 -0.06620825 0.9472120     none
+#4 cg13869341 129 -8.279105e-05 0.0002090945 -0.39595032 0.6921417     none
+#5 cg14008030 129 -1.177788e-05 0.0002935037 -0.04012856 0.9679906     none
+#6 cg12045430 129 -3.744617e-05 0.0001154320 -0.32440023 0.7456350     none
+
+write.table(general, "generalSEXFemales.txt", col.names=TRUE)
+
+general<-as.data.frame(alldataout$AdjustedwithCellTypeMales)
+colnames(general)<-c("probeID","N", "BETA", "SE", "zval", "P_VAL", "warnings")
+head(general)
+#probeID   N          BETA           SE        zval     P_VAL warnings
+#1 cg14817997 126  4.245266e-04 0.0003383601  1.25465928 0.2096025     none
+#2 cg26928153 126 -2.657383e-05 0.0001884237 -0.14103234 0.8878444     none
+#3 cg16269199 126  3.662256e-05 0.0003219670  0.11374634 0.9094389     none
+#4 cg13869341 126 -9.128550e-06 0.0002828253 -0.03227628 0.9742517     none
+#5 cg14008030 126 -5.978604e-05 0.0003348211 -0.17856111 0.8582823     none
+#6 cg12045430 126 -2.118261e-05 0.0001323192 -0.16008715 0.8728124     none
+
+write.table(general, "generalSEXMales.txt", col.names=TRUE)
+
+
+# to get lambdas
+
+load("/home/isglobal.lan/ldiez/data/WS_INMA/Methylation_INMA/PACE/Pla_IQ_LD/results/INMA_20220607_Output/pdp_genm_m100sd15_MAIN_sex/INMA_20220607_pdp_genm_m100sd15_testMAIN_sex_lambdas.RData")
+ls()
+#[1] "alldataout" "alllambda"  "verbal"     "verbalsig"
+
+alllambda$Adjusted
+alllambda$AdjustedwithCellType #0.8915743
+alllambda$AdjustedwithCellTypeFemales #1.240024
+alllambda$AdjustedwithCellTypeMales #1.026661
+
+
+# save or directly write the numbers in an excel file
+
+##### QC extra amb paquet EASIER (to exclude CpGs, and to get FDR and Bonferroni significance as extra columns in the dataframe)
+## -------------------------------------
+##  Install EASIER Package Code
+## -------------------------------------
+##
+##  Uncomment this code to install EASIER package
+#
+# # Install devtools
+#install.packages("devtools")
+#
+# # Install required packages
+#devtools::source_url("https://raw.githubusercontent.com/isglobal-brge/EASIER/HEAD/installer.R")
+
+# # Install EASIER package
+#devtools::install_github("isglobal-brge/EASIER@HEAD")
+
+##  END -  Install EASIER Package Code
+## -------------------------------------
+
+
+library(EASIER)
+
+
+
+########## ----------  VARIABLES DEFINED BY USER  ----------  ##########
+
+# Set working directory to new folder
+setwd("/home/isglobal.lan/ldiez/data/WS_INMA/Methylation_INMA/PACE/Pla_IQ_LD/results/INMA_202200601_Output/NOUsignificativeresultsMAIN/")
+
+
+# Files used in QC, needed in meta-analysis to plot ForestPlot (these files are the ones we have just saved)
+files <- c('verbalSEX.txt',
+           'nonverbalSEX.txt',
+           'generalSEX.txt')
+
+# Result folder
+results_folder <- 'QC_MAIN_NOU'
+
+# Prefixes for each file
+prefixes <- c('verbal', 'nonverbal', 'general')
+
+
+# Exclude - MASK snp5
+ethnic <- c('EUR', 'EUR', 'EUR')
+
+# Array type, used : EPIC or 450K
+artype <- c('EPIC', 'EPIC', 'EPIC')
+
+# Parameters to exclude CpGs
+exclude <- c( 'control_probes',
+              'noncpg_probes',
+              'Sex',
+              'MASK_mapping',
+              'MASK_sub30_copy',
+              'MASK_extBase',
+              'MASK_typeINextBaseSwitch',
+              'MASK_snp5_ethnic',
+              'Unrel_450_EPIC_blood')
+
+
+
+N <- c(255, 255, 255)
+n <- c(NA, NA, NA)
+
+# Minimum sample representation percentage required for CpGs
+# Filter minimum percentage of missings for each CpG in cohort
+# We need to define two parameters,
+#  - colname_NforProbe:
+#        Column name with Number of individuals per probe, this variable only needs
+#           to be defined if you want to filter CpGs with low representation.
+#         If defined value in colname_NforProbe not exists, no filter will be applied
+#  - pcMissingSamples :
+#        Máximum percent of missing samples allowed,
+
+colname_NforProbe <- 'N_for_probe'
+pcMissingSamples <- 0.9
+
+
+########## ----------  END VARIABLES DEFINED BY USER  ----------  ########## 
+
+
+
+## ###################### ##
+##  QC - Quality Control  ##
+## ###################### ##
+
+# Variable declaration to perform precision plot
+medianSE <- numeric(length(files))
+value_N <- numeric(length(files))
+
+if(length(n) == length(N))
+  value_n <- numeric(length(files))
+
+cohort_label <- character(length(files))
+
+# Prepare output folder for results (create if not exists)
+if(!dir.exists(file.path(getwd(), results_folder )))
+  suppressWarnings(dir.create(file.path(getwd(), results_folder)))
+
+## Remove duplicates, Exclude CpGs and adjust data (BN and FDR)
+for ( i in 1:length(files) )
+{
+  
+  # Prepare output subfolder for cohort-model results (create if not exists)
+  if(!dir.exists(file.path(getwd(), results_folder, prefixes[i] )))
+    suppressWarnings(dir.create(file.path(getwd(), results_folder, prefixes[i])))
+  
+  # Creates an empty file to resume all data if an old file exist  removes
+  # the file and creates a new one
+  fResumeName <- paste0( file.path(getwd(), results_folder, prefixes[i]),"/",prefixes[i], "_descriptives.txt")
+  if ( file.exists(fResumeName) ) {
+    file.remove(fResumeName)
+  }
+  file.create(fResumeName)
+  
+  # Read data.
+  cohort <- read.table(files[i], header = TRUE, as.is = TRUE)
+  print(paste0("Cohort file : ",files[i]," - readed OK", sep = " "))
+  
+  # Remove rows with NA from data
+  cohort <- clean_NA_from_data(cohort)
+  
+  # Descriptives - Before CpGs deletion #
+  descriptives_CpGs(cohort, c("BETA", "SE", "P_VAL"), fResumeName, N[i], before = TRUE)
+  
+  # Remove duplicates
+  # cohort <- remove_duplicate_CpGs(cohort, "probeID", paste0(results_folder,'/',prefixes[i], '/',prefixes[i],'_descriptives_duplic.txt'), paste0(results_folder,'/',prefixes[i],'_duplicates.txt') )
+  
+  test_duplicate_CpGs(cohort, "probeID", paste0(results_folder,'/',prefixes[i],'_duplicates.txt') )
+  
+  # Remove cpGs with low representation
+  # first, we test if colname_NforProbe and pcMissingSampes are defined
+  if( !exists("colname_NforProbe") ) { colname_NforProbe <- NULL }
+  if( !exists("pcMissingSamples") ) { pcMissingSamples <- NULL }
+  
+  cohort <- filterLowRepresentedCpGsinCohort(cohort, colname_NforProbe, pcMissingSamples, N[i], fileresume = fResumeName )
+  
+  # Exclude CpGs not meet conditions
+  if("MASK_snp5_ethnic" %in% exclude ){
+    cohort <- exclude_CpGs(cohort, "probeID", exclude, ethnic = ethnic[i], filename = paste0(results_folder, '/',prefixes[i], '/',prefixes[i],'_excluded.txt'), fileresume = fResumeName, artype = artype[i] )
+  } else {
+    #..# if( !is.null(exclude) && exclude!='') {
+    cohort <- exclude_CpGs(cohort, "probeID", exclude, ethnic = "", filename = paste0(results_folder, '/',prefixes[i], '/',prefixes[i],'_excluded.txt'), fileresume = fResumeName, artype = artype[i] )
+    #..# }
+  }
+  
+  # Descriptives - After CpGs deletion #
+  descriptives_CpGs(cohort, c("BETA", "SE", "P_VAL"), fResumeName, N[i], before = FALSE )
+  
+  # Adjust data by Bonferroni and FDR
+  cohort <- adjust_data(cohort, "P_VAL", bn=TRUE, fdr=TRUE, fResumeName, N[i]  )
+  
+  # Write QC complete data to external file
+  write_QCData(cohort, paste0(results_folder, '/',prefixes[i], '/',prefixes[i]))
+  
+  ## Visualization - Plots
+  #. Problems in some workstations and servers.# rasterpdf::raster_pdf(paste0(results_folder, '/',prefixes[i], '/',prefixes[i], '_QCplots.pdf'), res = 300)
+  #..# Problems in some cases --> Get png plots : pdf(paste0(results_folder, '/',prefixes[i], '/',prefixes[i], '_QCplots.pdf'))
+  
+  # Distribution plot
+  png(paste0(results_folder, '/',prefixes[i], '/',prefixes[i], '_QC_SE_plot.png'))
+  plot_distribution(cohort$SE, main = paste('Standard Errors of', prefixes[i]), xlab = 'SE')
+  dev.off()
+  png(paste0(results_folder, '/',prefixes[i], '/',prefixes[i], '_QC_pvals_plot.png'))
+  plot_distribution(cohort$P_VAL, main = paste('p-values of', prefixes[i]), xlab = 'p-value')
+  dev.off()
+  
+  # QQ plot
+  png(paste0(results_folder, '/',prefixes[i], '/',prefixes[i], '_QC_QQ_plot.png'))
+  qqman::qq(cohort$P_VAL, main = sprintf('QQ plot of %s (lambda = %f)', prefixes[i], lambda=get_lambda(cohort,"P_VAL")))
+  dev.off()
+  
+  # Volcano plot.
+  png(paste0(results_folder, '/',prefixes[i], '/',prefixes[i], '_QC_Volcano_plot.png'))
+  plot_volcano(cohort, "BETA", "P_VAL", main =paste('Volcano plot of', prefixes[i]) )
+  dev.off()
+  
+  # Add mandatory data for precisionplot
+  medianSE[i] <-  median(cohort$SE)
+  value_N[i] <- N[i]
+  cohort_label[i] <-  prefixes[i]
+  
+  # if n is defined for dichotomic condition :
+  if(length(n) == length(N))  value_n[i] <- n[i]
+  
+  # Store data for Beta Box-Plot
+  if( i == 1)
+    betas.data <- list()
+  betas.data[[prefixes[i]]] <- cohort[,"BETA"]
+  
+}
+
+
+library(EASIER)
+
+
+
+########## ----------  VARIABLES DEFINED BY USER  ----------  ##########
+
+# Set working directory to new folder
+setwd("/home/isglobal.lan/ldiez/data/WS_INMA/Methylation_INMA/PACE/Pla_IQ_LD/results/INMA_202200601_Output/NOUsignificativeresultsMAIN/")
+
+
+# Files used in QC, needed in meta-analysis to plot ForestPlot (these files are the ones we have just saved)
+files <- c('verbalSEXFemales.txt',
+           'nonverbalSEXFemales.txt',
+           'generalSEXFemales.txt')
+
+# Result folder
+results_folder <- 'QC_MAIN_NOU'
+
+# Prefixes for each file
+prefixes <- c('verbal', 'nonverbal', 'general')
+
+
+# Exclude - MASK snp5
+ethnic <- c('EUR', 'EUR', 'EUR')
+
+# Array type, used : EPIC or 450K
+artype <- c('EPIC', 'EPIC', 'EPIC')
+
+# Parameters to exclude CpGs
+exclude <- c( 'control_probes',
+              'noncpg_probes',
+              'Sex',
+              'MASK_mapping',
+              'MASK_sub30_copy',
+              'MASK_extBase',
+              'MASK_typeINextBaseSwitch',
+              'MASK_snp5_ethnic',
+              'Unrel_450_EPIC_blood')
+
+
+
+N <- c(255, 255, 255)
+n <- c(NA, NA, NA)
+
+# Minimum sample representation percentage required for CpGs
+# Filter minimum percentage of missings for each CpG in cohort
+# We need to define two parameters,
+#  - colname_NforProbe:
+#        Column name with Number of individuals per probe, this variable only needs
+#           to be defined if you want to filter CpGs with low representation.
+#         If defined value in colname_NforProbe not exists, no filter will be applied
+#  - pcMissingSamples :
+#        Máximum percent of missing samples allowed,
+
+colname_NforProbe <- 'N_for_probe'
+pcMissingSamples <- 0.9
+
+
+########## ----------  END VARIABLES DEFINED BY USER  ----------  ########## 
+
+
+
+## ###################### ##
+##  QC - Quality Control  ##
+## ###################### ##
+
+# Variable declaration to perform precision plot
+medianSE <- numeric(length(files))
+value_N <- numeric(length(files))
+
+if(length(n) == length(N))
+  value_n <- numeric(length(files))
+
+cohort_label <- character(length(files))
+
+# Prepare output folder for results (create if not exists)
+if(!dir.exists(file.path(getwd(), results_folder )))
+  suppressWarnings(dir.create(file.path(getwd(), results_folder)))
+
+## Remove duplicates, Exclude CpGs and adjust data (BN and FDR)
+for ( i in 1:length(files) )
+{
+  
+  # Prepare output subfolder for cohort-model results (create if not exists)
+  if(!dir.exists(file.path(getwd(), results_folder, prefixes[i] )))
+    suppressWarnings(dir.create(file.path(getwd(), results_folder, prefixes[i])))
+  
+  # Creates an empty file to resume all data if an old file exist  removes
+  # the file and creates a new one
+  fResumeName <- paste0( file.path(getwd(), results_folder, prefixes[i]),"/",prefixes[i], "_descriptives.txt")
+  if ( file.exists(fResumeName) ) {
+    file.remove(fResumeName)
+  }
+  file.create(fResumeName)
+  
+  # Read data.
+  cohort <- read.table(files[i], header = TRUE, as.is = TRUE)
+  print(paste0("Cohort file : ",files[i]," - readed OK", sep = " "))
+  
+  # Remove rows with NA from data
+  cohort <- clean_NA_from_data(cohort)
+  
+  # Descriptives - Before CpGs deletion #
+  descriptives_CpGs(cohort, c("BETA", "SE", "P_VAL"), fResumeName, N[i], before = TRUE)
+  
+  # Remove duplicates
+  # cohort <- remove_duplicate_CpGs(cohort, "probeID", paste0(results_folder,'/',prefixes[i], '/',prefixes[i],'_descriptives_duplic.txt'), paste0(results_folder,'/',prefixes[i],'_duplicates.txt') )
+  
+  test_duplicate_CpGs(cohort, "probeID", paste0(results_folder,'/',prefixes[i],'_duplicates.txt') )
+  
+  # Remove cpGs with low representation
+  # first, we test if colname_NforProbe and pcMissingSampes are defined
+  if( !exists("colname_NforProbe") ) { colname_NforProbe <- NULL }
+  if( !exists("pcMissingSamples") ) { pcMissingSamples <- NULL }
+  
+  cohort <- filterLowRepresentedCpGsinCohort(cohort, colname_NforProbe, pcMissingSamples, N[i], fileresume = fResumeName )
+  
+  # Exclude CpGs not meet conditions
+  if("MASK_snp5_ethnic" %in% exclude ){
+    cohort <- exclude_CpGs(cohort, "probeID", exclude, ethnic = ethnic[i], filename = paste0(results_folder, '/',prefixes[i], '/',prefixes[i],'_excluded.txt'), fileresume = fResumeName, artype = artype[i] )
+  } else {
+    #..# if( !is.null(exclude) && exclude!='') {
+    cohort <- exclude_CpGs(cohort, "probeID", exclude, ethnic = "", filename = paste0(results_folder, '/',prefixes[i], '/',prefixes[i],'_excluded.txt'), fileresume = fResumeName, artype = artype[i] )
+    #..# }
+  }
+  
+  # Descriptives - After CpGs deletion #
+  descriptives_CpGs(cohort, c("BETA", "SE", "P_VAL"), fResumeName, N[i], before = FALSE )
+  
+  # Adjust data by Bonferroni and FDR
+  cohort <- adjust_data(cohort, "P_VAL", bn=TRUE, fdr=TRUE, fResumeName, N[i]  )
+  
+  # Write QC complete data to external file
+  write_QCData(cohort, paste0(results_folder, '/',prefixes[i], '/',prefixes[i]))
+  
+  ## Visualization - Plots
+  #. Problems in some workstations and servers.# rasterpdf::raster_pdf(paste0(results_folder, '/',prefixes[i], '/',prefixes[i], '_QCplots.pdf'), res = 300)
+  #..# Problems in some cases --> Get png plots : pdf(paste0(results_folder, '/',prefixes[i], '/',prefixes[i], '_QCplots.pdf'))
+  
+  # Distribution plot
+  png(paste0(results_folder, '/',prefixes[i], '/',prefixes[i], '_QC_SE_plot.png'))
+  plot_distribution(cohort$SE, main = paste('Standard Errors of', prefixes[i]), xlab = 'SE')
+  dev.off()
+  png(paste0(results_folder, '/',prefixes[i], '/',prefixes[i], '_QC_pvals_plot.png'))
+  plot_distribution(cohort$P_VAL, main = paste('p-values of', prefixes[i]), xlab = 'p-value')
+  dev.off()
+  
+  # QQ plot
+  png(paste0(results_folder, '/',prefixes[i], '/',prefixes[i], '_QC_QQ_plot.png'))
+  qqman::qq(cohort$P_VAL, main = sprintf('QQ plot of %s (lambda = %f)', prefixes[i], lambda=get_lambda(cohort,"P_VAL")))
+  dev.off()
+  
+  # Volcano plot.
+  png(paste0(results_folder, '/',prefixes[i], '/',prefixes[i], '_QC_Volcano_plot.png'))
+  plot_volcano(cohort, "BETA", "P_VAL", main =paste('Volcano plot of', prefixes[i]) )
+  dev.off()
+  
+  # Add mandatory data for precisionplot
+  medianSE[i] <-  median(cohort$SE)
+  value_N[i] <- N[i]
+  cohort_label[i] <-  prefixes[i]
+  
+  # if n is defined for dichotomic condition :
+  if(length(n) == length(N))  value_n[i] <- n[i]
+  
+  # Store data for Beta Box-Plot
+  if( i == 1)
+    betas.data <- list()
+  betas.data[[prefixes[i]]] <- cohort[,"BETA"]
+  
+}
+
+
+
+library(EASIER)
+
+
+
+########## ----------  VARIABLES DEFINED BY USER  ----------  ##########
+
+# Set working directory to new folder
+setwd("/home/isglobal.lan/ldiez/data/WS_INMA/Methylation_INMA/PACE/Pla_IQ_LD/results/INMA_202200601_Output/NOUsignificativeresultsMAIN/")
+
+
+# Files used in QC, needed in meta-analysis to plot ForestPlot (these files are the ones we have just saved)
+files <- c('verbalSEXMales.txt',
+           'nonverbalSEXMales.txt',
+           'generalSEXMales.txt')
+
+# Result folder
+results_folder <- 'QC_MAIN_NOU'
+
+# Prefixes for each file
+prefixes <- c('verbal', 'nonverbal', 'general')
+
+
+# Exclude - MASK snp5
+ethnic <- c('EUR', 'EUR', 'EUR')
+
+# Array type, used : EPIC or 450K
+artype <- c('EPIC', 'EPIC', 'EPIC')
+
+# Parameters to exclude CpGs
+exclude <- c( 'control_probes',
+              'noncpg_probes',
+              'Sex',
+              'MASK_mapping',
+              'MASK_sub30_copy',
+              'MASK_extBase',
+              'MASK_typeINextBaseSwitch',
+              'MASK_snp5_ethnic',
+              'Unrel_450_EPIC_blood')
+
+
+
+N <- c(255, 255, 255)
+n <- c(NA, NA, NA)
+
+# Minimum sample representation percentage required for CpGs
+# Filter minimum percentage of missings for each CpG in cohort
+# We need to define two parameters,
+#  - colname_NforProbe:
+#        Column name with Number of individuals per probe, this variable only needs
+#           to be defined if you want to filter CpGs with low representation.
+#         If defined value in colname_NforProbe not exists, no filter will be applied
+#  - pcMissingSamples :
+#        Máximum percent of missing samples allowed,
+
+colname_NforProbe <- 'N_for_probe'
+pcMissingSamples <- 0.9
+
+
+########## ----------  END VARIABLES DEFINED BY USER  ----------  ########## 
+
+
+
+## ###################### ##
+##  QC - Quality Control  ##
+## ###################### ##
+
+# Variable declaration to perform precision plot
+medianSE <- numeric(length(files))
+value_N <- numeric(length(files))
+
+if(length(n) == length(N))
+  value_n <- numeric(length(files))
+
+cohort_label <- character(length(files))
+
+# Prepare output folder for results (create if not exists)
+if(!dir.exists(file.path(getwd(), results_folder )))
+  suppressWarnings(dir.create(file.path(getwd(), results_folder)))
+
+## Remove duplicates, Exclude CpGs and adjust data (BN and FDR)
+for ( i in 1:length(files) )
+{
+  
+  # Prepare output subfolder for cohort-model results (create if not exists)
+  if(!dir.exists(file.path(getwd(), results_folder, prefixes[i] )))
+    suppressWarnings(dir.create(file.path(getwd(), results_folder, prefixes[i])))
+  
+  # Creates an empty file to resume all data if an old file exist  removes
+  # the file and creates a new one
+  fResumeName <- paste0( file.path(getwd(), results_folder, prefixes[i]),"/",prefixes[i], "_descriptives.txt")
+  if ( file.exists(fResumeName) ) {
+    file.remove(fResumeName)
+  }
+  file.create(fResumeName)
+  
+  # Read data.
+  cohort <- read.table(files[i], header = TRUE, as.is = TRUE)
+  print(paste0("Cohort file : ",files[i]," - readed OK", sep = " "))
+  
+  # Remove rows with NA from data
+  cohort <- clean_NA_from_data(cohort)
+  
+  # Descriptives - Before CpGs deletion #
+  descriptives_CpGs(cohort, c("BETA", "SE", "P_VAL"), fResumeName, N[i], before = TRUE)
+  
+  # Remove duplicates
+  # cohort <- remove_duplicate_CpGs(cohort, "probeID", paste0(results_folder,'/',prefixes[i], '/',prefixes[i],'_descriptives_duplic.txt'), paste0(results_folder,'/',prefixes[i],'_duplicates.txt') )
+  
+  test_duplicate_CpGs(cohort, "probeID", paste0(results_folder,'/',prefixes[i],'_duplicates.txt') )
+  
+  # Remove cpGs with low representation
+  # first, we test if colname_NforProbe and pcMissingSampes are defined
+  if( !exists("colname_NforProbe") ) { colname_NforProbe <- NULL }
+  if( !exists("pcMissingSamples") ) { pcMissingSamples <- NULL }
+  
+  cohort <- filterLowRepresentedCpGsinCohort(cohort, colname_NforProbe, pcMissingSamples, N[i], fileresume = fResumeName )
+  
+  # Exclude CpGs not meet conditions
+  if("MASK_snp5_ethnic" %in% exclude ){
+    cohort <- exclude_CpGs(cohort, "probeID", exclude, ethnic = ethnic[i], filename = paste0(results_folder, '/',prefixes[i], '/',prefixes[i],'_excluded.txt'), fileresume = fResumeName, artype = artype[i] )
+  } else {
+    #..# if( !is.null(exclude) && exclude!='') {
+    cohort <- exclude_CpGs(cohort, "probeID", exclude, ethnic = "", filename = paste0(results_folder, '/',prefixes[i], '/',prefixes[i],'_excluded.txt'), fileresume = fResumeName, artype = artype[i] )
+    #..# }
+  }
+  
+  # Descriptives - After CpGs deletion #
+  descriptives_CpGs(cohort, c("BETA", "SE", "P_VAL"), fResumeName, N[i], before = FALSE )
+  
+  # Adjust data by Bonferroni and FDR
+  cohort <- adjust_data(cohort, "P_VAL", bn=TRUE, fdr=TRUE, fResumeName, N[i]  )
+  
+  # Write QC complete data to external file
+  write_QCData(cohort, paste0(results_folder, '/',prefixes[i], '/',prefixes[i]))
+  
+  ## Visualization - Plots
+  #. Problems in some workstations and servers.# rasterpdf::raster_pdf(paste0(results_folder, '/',prefixes[i], '/',prefixes[i], '_QCplots.pdf'), res = 300)
+  #..# Problems in some cases --> Get png plots : pdf(paste0(results_folder, '/',prefixes[i], '/',prefixes[i], '_QCplots.pdf'))
+  
+  # Distribution plot
+  png(paste0(results_folder, '/',prefixes[i], '/',prefixes[i], '_QC_SE_plot.png'))
+  plot_distribution(cohort$SE, main = paste('Standard Errors of', prefixes[i]), xlab = 'SE')
+  dev.off()
+  png(paste0(results_folder, '/',prefixes[i], '/',prefixes[i], '_QC_pvals_plot.png'))
+  plot_distribution(cohort$P_VAL, main = paste('p-values of', prefixes[i]), xlab = 'p-value')
+  dev.off()
+  
+  # QQ plot
+  png(paste0(results_folder, '/',prefixes[i], '/',prefixes[i], '_QC_QQ_plot.png'))
+  qqman::qq(cohort$P_VAL, main = sprintf('QQ plot of %s (lambda = %f)', prefixes[i], lambda=get_lambda(cohort,"P_VAL")))
+  dev.off()
+  
+  # Volcano plot.
+  png(paste0(results_folder, '/',prefixes[i], '/',prefixes[i], '_QC_Volcano_plot.png'))
+  plot_volcano(cohort, "BETA", "P_VAL", main =paste('Volcano plot of', prefixes[i]) )
+  dev.off()
+  
+  # Add mandatory data for precisionplot
+  medianSE[i] <-  median(cohort$SE)
+  value_N[i] <- N[i]
+  cohort_label[i] <-  prefixes[i]
+  
+  # if n is defined for dichotomic condition :
+  if(length(n) == length(N))  value_n[i] <- n[i]
+  
+  # Store data for Beta Box-Plot
+  if( i == 1)
+    betas.data <- list()
+  betas.data[[prefixes[i]]] <- cohort[,"BETA"]
+  
+}
 
 #########################################################
 ######################MATERNAL IQ #######################
@@ -310,6 +1034,15 @@ ls()
 summary(alldataout)
 verbal<-as.data.frame(alldataout$AdjustedwithCellType)
 colnames(verbal)<-c("probeID","N", "BETA", "SE", "zval", "P_VAL", "warnings")
+head(verbal)
+#probeID   N          BETA           SE       zval       P_VAL warnings
+#1 cg14817997 243  5.340603e-04 1.885240e-04  2.8328500 0.004613503     none
+#2 cg26928153 243  3.962006e-05 1.526834e-04  0.2594916 0.795255949     none
+#3 cg16269199 243  2.133836e-05 1.875243e-04  0.1137898 0.909404419     none
+#4 cg13869341 243 -3.761864e-05 1.363476e-04 -0.2759025 0.782622950     none
+#5 cg14008030 243 -4.272011e-05 1.931897e-04 -0.2211303 0.824990953     none
+#6 cg12045430 243  5.431726e-05 9.461732e-05  0.5740731 0.565918356     none
+
 write.table(verbal, "verbalmaternalIQ.txt", col.names=TRUE)
 
 # to get lambdas
@@ -318,9 +1051,7 @@ ls()
 #[1] "alldataout" "alllambda"  "verbal"     "verbalsig"
 
 alllambda$Adjusted
-alllambda$AdjustedwithCellType ## la buena! anar apuntant!
-
-#0.9657854
+alllambda$AdjustedwithCellType ## 0.9657854
 # save or directly write the numbers in an excel file
 
 # NONVERBAL
@@ -330,6 +1061,15 @@ ls()
 summary(alldataout)
 nonverbal<-as.data.frame(alldataout$AdjustedwithCellType)
 colnames(nonverbal)<-c("probeID","N", "BETA", "SE", "zval", "P_VAL", "warnings")
+head(nonverbal)
+#probeID   N          BETA           SE       zval      P_VAL warnings
+#1 cg14817997 243  3.305592e-04 1.882963e-04  1.7555269 0.07916923     none
+#2 cg26928153 243 -5.193619e-05 1.464365e-04 -0.3546669 0.72283912     none
+#3 cg16269199 243  5.871093e-05 1.882617e-04  0.3118580 0.75514842     none
+#4 cg13869341 243  3.021072e-05 1.625126e-04  0.1858977 0.85252498     none
+#5 cg14008030 243 -6.699994e-05 2.035654e-04 -0.3291323 0.74205566     none
+#6 cg12045430 243 -6.893108e-05 8.875794e-05 -0.7766188 0.43738372     none
+
 write.table(nonverbal, "nonverbalIQ.txt", col.names=TRUE)
 
 # to get lambdas
@@ -340,8 +1080,7 @@ ls()
 
 alllambda$Adjusted
 
-alllambda$AdjustedwithCellType ## la buena! anar apuntant!
-#0.9110402
+alllambda$AdjustedwithCellType #0.9110402
 
 # save or directly write the numbers in an excel file
 
@@ -352,6 +1091,15 @@ ls()
 summary(alldataout)
 general<-as.data.frame(alldataout$AdjustedwithCellType)
 colnames(general)<-c("probeID","N", "BETA", "SE", "zval", "P_VAL", "warnings")
+head(general)
+#probeID   N          BETA           SE        zval     P_VAL warnings
+#1 cg14817997 126  4.245266e-04 0.0003383601  1.25465928 0.2096025     none
+#2 cg26928153 126 -2.657383e-05 0.0001884237 -0.14103234 0.8878444     none
+#3 cg16269199 126  3.662256e-05 0.0003219670  0.11374634 0.9094389     none
+#4 cg13869341 126 -9.128550e-06 0.0002828253 -0.03227628 0.9742517     none
+#5 cg14008030 126 -5.978604e-05 0.0003348211 -0.17856111 0.8582823     none
+#6 cg12045430 126 -2.118261e-05 0.0001323192 -0.16008715 0.8728124     none
+
 write.table(general, "generalmaternalIQ.txt", col.names=TRUE)
 
 # to get lambdas
@@ -362,8 +1110,7 @@ ls()
 
 alllambda$Adjusted
 
-alllambda$AdjustedwithCellType ## la buena! anar apuntant!
-#0.8761689
+alllambda$AdjustedwithCellType ## 0.8761689
 
 # save or directly write the numbers in an excel file
 
@@ -576,9 +1323,7 @@ ls()
 #[1] "alldataout" "alllambda"  "verbal"     "verbalsig"
 
 alllambda$Adjusted
-alllambda$AdjustedwithCellType ## la buena! anar apuntant!
-
-#1.10016
+alllambda$AdjustedwithCellType ##1.10016
 # save or directly write the numbers in an excel file
 
 # NONVERBAL
@@ -587,6 +1332,7 @@ load("/home/isglobal.lan/ldiez/data/WS_INMA/Methylation_INMA/PACE/Pla_IQ_LD/resu
 ls()
 summary(alldataout)
 nonverbal<-as.data.frame(alldataout$AdjustedwithCellType)
+colnames(nonverbal)<-c("probeID","N", "BETA", "SE", "zval", "P_VAL", "warnings")
 head(nonverbal)
 #   CpG   n          coef           se       zval      pval warnings
 #1 cg14817997 210  2.744763e-04 1.924782e-04  1.4260128 0.1538646     none
@@ -596,7 +1342,6 @@ head(nonverbal)
 #5 cg14008030 210 -2.721984e-05 1.800202e-04 -0.1512044 0.8798145     none
 #6 cg12045430 210 -1.133677e-04 8.874105e-05 -1.2775117 0.2014217     none
 
-colnames(nonverbal)<-c("probeID","N", "BETA", "SE", "zval", "P_VAL", "warnings")
 write.table(nonverbal, "nonverbalsens.txt", col.names=TRUE)
 
 # to get lambdas
@@ -607,8 +1352,7 @@ ls()
 
 alllambda$Adjusted
 
-alllambda$AdjustedwithCellType ## la buena! anar apuntant!
-#0.9961188
+alllambda$AdjustedwithCellType ## 0.9961188
 
 
 # save or directly write the numbers in an excel file
@@ -638,8 +1382,7 @@ ls()
 
 alllambda$Adjusted
 
-alllambda$AdjustedwithCellType ## la buena! anar apuntant!
-#1.017348
+alllambda$AdjustedwithCellType ## 1.017348
 
 
 # save or directly write the numbers in an excel file
@@ -856,9 +1599,7 @@ ls()
 #[1] "alldataout" "alllambda"  "verbal"     "verbalsig"
 
 alllambda$Adjusted
-alllambda$AdjustedwithCellType ## la buena! anar apuntant!
-
-#0.9687708
+alllambda$AdjustedwithCellType ##0.9687708
 
 
 # save or directly write the numbers in an excel file
@@ -869,6 +1610,7 @@ load("/home/isglobal.lan/ldiez/data/WS_INMA/Methylation_INMA/PACE/Pla_IQ_LD/resu
 ls()
 summary(alldataout)
 nonverbal<-as.data.frame(alldataout$AdjustedwithCellType)
+colnames(nonverbal)<-c("probeID","N", "BETA", "SE", "zval", "P_VAL", "warnings")
 head(nonverbal)
 #            CpG   n          coef           se       zval       pval warnings
 #1 cg14817997 255  3.133304e-04 1.874411e-04  1.6716211 0.09459906     none
@@ -877,8 +1619,6 @@ head(nonverbal)
 #4 cg13869341 255  2.720427e-05 1.531782e-04  0.1775988 0.85903803     none
 #5 cg14008030 255 -4.458685e-05 1.940430e-04 -0.2297782 0.81826414     none
 #6 cg12045430 255 -9.699235e-05 8.255347e-05 -1.1749033 0.24003339     none
-
-colnames(nonverbal)<-c("probeID","N", "BETA", "SE", "zval", "P_VAL", "warnings")
 write.table(nonverbal, "nonverbalsges.txt", col.names=TRUE)
 
 # to get lambdas
@@ -889,8 +1629,7 @@ ls()
 
 alllambda$Adjusted
 
-alllambda$AdjustedwithCellType ## la buena! anar apuntant!
-# 0.9302214
+alllambda$AdjustedwithCellType ## 0.9302214
 
 
 
@@ -923,8 +1662,7 @@ ls()
 
 alllambda$Adjusted
 
-alllambda$AdjustedwithCellType ## la buena! anar apuntant!
-#0.8933315
+alllambda$AdjustedwithCellType ## 0.8933315
 
 
 
@@ -2543,5 +3281,3 @@ for ( i in 1:length(files) )
   betas.data[[prefixes[i]]] <- cohort[,"BETA"]
   
 }
-
-
